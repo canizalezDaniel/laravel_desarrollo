@@ -8,7 +8,10 @@
 				<div class="panel-heading">Usuarios</div>
 
 				<div class="panel-body">
-					<p><button type="button" class="btn btn-info" >Nuevo Usuario</button></p>
+					
+					<p><a href="{{route('admin.users.create')}}"  class="btn btn-info">Nuevo Usuario</a></p>
+
+					
 					<p>{{$users->count()}} Usuarios de {{$users->total()}} en total</p>
 					<table class="table table-hover">
 						<tr>

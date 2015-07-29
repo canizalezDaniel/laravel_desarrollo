@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+//use Illuminate\Support\Facades\Request;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -16,14 +17,14 @@ class UsersController extends Controller {
 	public function index()
 	{
 		
-		//$users = User::paginate();
+		$users = User::paginate();
 		
-		$users=User::where('first_name','<>','Daniel')
+		/*$users=User::where('first_name','<>','Jose')
 		->with('profile')
 		->orderBy('id','ASC')
-		->paginate(15);
+		->paginate(20);
 		
-		//dd($users);
+		//dd($users);*/
 		return view ('admin.users.index',compact('users'));
 	}
 
@@ -35,6 +36,7 @@ class UsersController extends Controller {
 	public function create()
 	{
 		//
+		return view('admin.users.create');
 	}
 
 	/**
@@ -42,9 +44,14 @@ class UsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
 		//
+		
+		$user= new User($request->all());
+		$user->save();
+		
+		return redirect()->route('admin.users.index');
 	}
 
 	/**
